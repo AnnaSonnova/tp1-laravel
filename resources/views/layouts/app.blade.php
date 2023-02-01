@@ -7,7 +7,10 @@
     <title>{{config("app.name")}} : @yield('title')</title>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css')}}">
 </head>
-<body class="color-body">
+<body class="color-body margin-body">
+<div >
+      <img class="d-block w-100" src="img/BandeauGeneriqueFutur1.jpg" alt="Second slide">
+    </div>
 <ul class="nav justify-content-end" style="background-color: orange; padding:5px;">
   <li class="nav-item">
     <a class="nav-link active"  aria-current="page" href="{{ route('index') }}">Liste des etudiants</a>
@@ -24,7 +27,10 @@
     <a class="nav-link disabled"  href="#" tabindex="-1" aria-disabled="true">Disabled</a>
   </li> -->
 </ul>
+
 @yield('content')
+
+
 </body>
 <script src="{{ asset('js/bootstrap.min.js')}}"></script>
 </html>

@@ -11781,7 +11781,12 @@ textarea.form-control-lg {
 }
 
 .color-body{
-  background-color: #030233d8;
+  background-color: #062b75ef;
   color: rgb(201, 198, 198);
+}
+
+.margin-body{
+  margin-bottom: 60px;
+  
 }
 /*# sourceMappingURL=bootstrap.css.map */
