@@ -1,9 +1,11 @@
+
 @extends('layouts.app')
 <!-- @section('title', 'Blog List') -->
 @section('content')
+
 <div class="container">
     <div class="row mt-5">
-        <div class="col-12 ">
+        <div class="col-12  ">
             <p>Nom : <strong>{!! $etudiant->nom !!}</strong></p> 
             <p>Prenom : <strong>  {!! $etudiant->prenom !!}</strong></p>
             <p>Date de naissance : <strong> {!! $etudiant->dateDeNaissance !!}</strong></p>
@@ -12,11 +14,11 @@
             <p>Email : <strong> {!! $etudiant->email !!}</strong></p>
             <p>Ville :<strong> {!! $etudiant->EtudiantAVille->nomVille !!}</strong></p> 
             <div class="d-flex justify-content-around">
-                <a href="{{ route('index') }}" class="btn btn-warning">Retourner</a>
+                <a href="{{ route('index') }}" class="btn btn-warning  ">Retourner</a>
                 <a href="{{ route('edit', $etudiant->id)}}" class="btn btn-success">Modifier</a>
                <!-- Button trigger modal -->
                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                 Effacer
+                 Supprimer
                 </button>
                 
             </div>

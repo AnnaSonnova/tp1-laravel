@@ -66,8 +66,8 @@
                 </div>
 
                 <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                    <input type="submit" class="btn btn-secondary me-md-4" value="Modifier">
-                    <a href="{{ route('index') }}" class="btn btn-warning ">Retourner</a> 
+                    <input type="submit" class="btn  btn-warning me-md-4" value="Modifier">
+                    <a href="{{ route('index') }}" class="btn btn-secondary ">Retourner</a> 
 
                 </div>
             </form>
