@@ -49,6 +49,17 @@
                         <input type="date" class="form-control" name="dateDeNaissance" >
                     </div>
                 </div>
+                <!-- <div class="row mb-3 mt-2">
+            @if($errors->has('dateDeNaissance'))
+                <div class="text-danger">{{ $errors->first('dateDeNaissance') }}</div>
+            @endif
+                <label for="dateDeNaissance" class="col-sm-2 col-form-label">Date de naissance </label>
+                <div class="col-sm-6">
+                    <input type="date" class="form-control" name="dateDeNaissance" value="" placeholder="d-m-a" required>
+                   
+
+                </div> -->
+            </div>
 
 
                 <div class="row mb-3 mt-2">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Etudiant;
 use App\Models\Ville;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EtudiantController extends Controller
 {
@@ -15,10 +16,13 @@ class EtudiantController extends Controller
      */
     public function index()
     {
+        if(Auth::check()){
+            $etudiants = Etudiant::select()->paginate(10);
+            return view('etudiant.index', ['etudiants' => $etudiants]);
+            }
+            return redirect(route('login'))->withErrors('Vous devez vous connecté pour acceder a la liste d\'etudiants');
         
-        $etudiants = Etudiant::select()->paginate(10);
         
-        return view('etudiant.index', ['etudiants' => $etudiants]);
         
     }
 
@@ -44,6 +48,20 @@ class EtudiantController extends Controller
     public function store(Request $request)
     {
         //
+        //exit($request->dateDeNaissance);
+    //     $request->validate([
+          
+    //         'nom' => 'required',
+    //         'prenom' => 'required',
+    //         'adresse' => 'required',
+    //         'phone' => 'required|numeric|digits:10',
+    //         //'dateDeNaissance' => 'required|date_format:m/d/Y|before:today',
+    //         'ville_id' => 'required',
+    //         'email' => 'required|email|unique:etudiants',
+            
+            
+    // ]);
+
         $newEtudiant = Etudiant::create([
 
             'nom' => $request->nom,
