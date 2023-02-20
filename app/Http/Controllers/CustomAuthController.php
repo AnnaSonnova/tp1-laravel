@@ -35,6 +35,7 @@ class CustomAuthController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * saisir un nouveau 
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -45,7 +46,7 @@ class CustomAuthController extends Controller
             'name'=>'required',
             'email'=>'required|email|unique:users',
             'password' => 'required|min:6|max:20',
-        //     'password' => 'required|min:2|max:20|alpha_num|confirmed|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
+        
         // 'password_confirmation' => 'required|same:password',
         ]);
         $user = new User;
