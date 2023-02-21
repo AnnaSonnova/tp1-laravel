@@ -15,15 +15,15 @@ class Document extends Model
         
     ];
 
-    public function selectDocument($order = 'ASC') {
-        $lang = session()->get('localeDB');
+    // public function selectDocument($order = 'ASC') {
+    //     $lang = session()->get('localeDB');
 
-        $query = Document::select( 'id', 
-        DB::raw("(case when titre$lang is null then titre else titre$lang end) as titre")
-       )
-        ->orderby('titre', $order)
-        ->get();
-        return $query;
-        }
+    //     $query = Document::select( 'id', 
+    //     DB::raw("(case when titre$lang is null then titre else titre$lang end) as titre")
+    //    )
+    //     ->orderby('titre', $order)
+    //     ->get();
+    //     return $query;
+    //     }
        
 }

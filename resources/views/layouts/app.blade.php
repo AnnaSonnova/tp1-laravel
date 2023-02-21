@@ -31,8 +31,10 @@
             <a class="nav-link" href="{{route('user.create')}}">Registration</a>
             <a class="nav-link" href="{{route('login')}}">@lang('lang.login')</a>
             @else
-           
             <a class="nav-link" href="{{route('logout')}}">@lang('lang.logout')</a>
+            <a class="nav-link" href="{{ route('liste.article') }}">Article</a>
+            <a class="btn btn-primary m-lg-1"  href="{{ route('create.article') }}">ajouter-article</a>
+            <a class="nav-link" href="{{ route('document.liste') }}">Document</a>
             @endguest 
           </div>
           <div class="navbar-nav">

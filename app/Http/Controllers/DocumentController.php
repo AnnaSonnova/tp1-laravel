@@ -15,6 +15,8 @@ class DocumentController extends Controller
     public function index()
     {
         //
+        $documents = Document::select()->paginate(5);
+        return view('document.liste' , ['documents' => $documents]);
     }
 
     /**
@@ -25,6 +27,7 @@ class DocumentController extends Controller
     public function create()
     {
         //
+        return view('document.index');
     }
 
     /**
@@ -36,6 +39,33 @@ class DocumentController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+
+            'document' => 'required|mimes:pdf,zip|max:2048',
+            'titre' => 'required|unique:documents',
+            'titre_fr' => 'required|unique:documents',
+
+        ]);
+        $document = $request->document;
+
+
+        $Documentname=$request->titre.'.'.$document->getClientOriginalExtension();
+        $request->document->move('assets/document',$Documentname);
+
+        //$request->document = $Documentname;
+        
+       
+        $newDocument = Document::create([
+
+            'titre' => $request->titre,
+            'titre_fr' => $request->titre_fr,
+            'document' => $request->document,
+            'user_id' => $request->user_id,
+             
+        ]); 
+
+        
+        return redirect(route('create.document'))->with('message', 'IT WORKS!');
     }
 
     /**
@@ -58,6 +88,7 @@ class DocumentController extends Controller
     public function edit(Document $document)
     {
         //
+        return view('document.edit' , ['document' => $document]);
     }
 
     /**
@@ -67,9 +98,25 @@ class DocumentController extends Controller
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Document $document)
+    public function update(Request $request,$id)
     {
         //
+        $request->validate([
+            
+            'titre' => 'required|unique:documents',
+            'titre_fr' => 'required|unique:documents',
+
+        ]);
+        $document = Document::find($id);
+
+        $document->update([
+
+            'titre' => $request->titre,
+            'titre_fr' => $request->titre_fr,
+             
+        ]);
+
+        return view('document.index');
     }
 
     /**
@@ -81,5 +128,12 @@ class DocumentController extends Controller
     public function destroy(Document $document)
     {
         //
+        $document->delete();
+        return redirect(route('document.liste'));
+    }
+
+    public function download(Request $request,$document) 
+    {
+        return response()->download(public_path('assets/document/'.$document));
     }
 }

@@ -5,17 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App;
 
 class ArticleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * affiche tous les articles
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-       
+        $articles = Article::selectArticles();
+        return view('article.index', ['article' => $articles]);
 //  if(Auth::check()){
 //  $posts = BlogPost::all();
 //  return view('blog.index', ['posts' => $posts]);
@@ -27,17 +29,18 @@ class ArticleController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * affiche le formulaire pour créer un article
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
         //
+        return view('article.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * saisi un nouveau article
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -45,10 +48,30 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+          
+            'titre' => 'required|unique:articles',
+            'contenu' => 'required',
+            'titre_fr' => 'required|unique:articles',
+            'contenu_fr' => 'required',
+            
+
+        ]);
+        $newArticle = Article::create([
+
+            'titre' => $request->titre,
+            'titre_fr' => $request->titre_fr,
+            'contenu' => $request->contenu,
+            'contenu_fr' => $request->contenu_fr,
+            'user_id' => $request->user_id,
+
+        ]); 
+        
+        return redirect(route('liste.article'));
     }
 
     /**
-     * Display the specified resource.
+     * affiche un article 
      *
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
@@ -59,7 +82,7 @@ class ArticleController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * affiche le formulaire pour modifier l'article
      *
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
@@ -67,10 +90,20 @@ class ArticleController extends Controller
     public function edit(Article $article)
     {
         //
+        $user_id = Auth::user()->id;
+        if ($article['user_id'] === $user_id) {
+
+            return view('article.edit', ['article' => $article]);
+
+        }else {
+
+            $articles = Article::selectArticles();
+            return view('article.index', ['article' => $articles]);
+        }
     }
 
     /**
-     * Update the specified resource in storage.
+     * enregistre l'article modifié
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Article  $article
@@ -79,10 +112,28 @@ class ArticleController extends Controller
     public function update(Request $request, Article $article)
     {
         //
+
+        // $request->validate([
+          
+        //     'titre' => 'required|unique:articles',
+        //     'titre_fr' => 'required|unique:articles',
+
+        // ]);
+        // $article = Article::find($id);
+        $article->update([
+
+            'titre' => $request->titre,
+            'titre_fr' => $request->titre_fr,
+            'contenu' => $request->contenu,
+            'contenu_fr' => $request->contenu_fr,
+            'user_id' => $request->user_id,
+          
+        ]);
+        return redirect(route('liste.article'));
     }
 
     /**
-     * Remove the specified resource from storage.
+     * supprimer un article
      *
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
@@ -90,5 +141,7 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         //
+        $article->delete();
+        return redirect(route('liste.article'));
     }
 }

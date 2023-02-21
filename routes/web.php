@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EtudiantController;
 use App\Http\Controllers\CustomAuthController ;
 use App\Http\Controllers\LocalizationController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\DocumentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,3 +48,24 @@ Route::get('/dashboard', [CustomAuthController::class, 'dashboard'])->name(
 
 //langue
 Route::get('/lang/{locale}', [LocalizationController::class, 'index'])->name('lang');
+
+// article 
+Route::get('/index-article', [ArticleController::class, 'index'])->name('liste.article')->middleware('auth');
+Route::get('/create-article', [ArticleController::class , 'create'])->name('create.article')->middleware('auth');
+Route::delete('/delete.article/{article}', [ArticleController::class , 'destroy'])->name('delete.article');
+Route::get('/edit-article/{article}', [ArticleController::class , 'edit'])->name('edit.article')->middleware('auth');
+Route::put('/edit-article/{article}', [ArticleController::class , 'update'])->name('update.article');
+Route::post('/store-article', [ArticleController::class , 'store'])->name('store.article');
+
+//pdf
+Route::get('/article-pdf/{article}', [BlogPostController::class, 'articlePdf'])->name('article.pdf')->middleware('auth');
+// Route::get('/doc-pdf/{document}', [BlogPostController::class, 'docPdf'])->name('doc.pdf')->middleware('auth');
+
+// document 
+Route::get('/liste-document', [DocumentController::class, 'index'])->name('document.liste')->middleware('auth');
+Route::get('/create-document', [DocumentController::class , 'create'])->name('create.document')->middleware('auth');
+Route::post('/store-document', [DocumentController::class , 'store'])->name('store.document')->middleware('auth');
+Route::get('/download-document/{document}', [DocumentController::class , 'download'])->name('download.document')->middleware('auth');
+Route::get('/edit-document/{document}', [DocumentController::class , 'edit'])->name('edit.document')->middleware('auth');
+Route::put('/edit-document/{id}', [DocumentController::class , 'update'])->name('update.document')->middleware('auth');
+Route::delete('/delete-document/{document}', [DocumentController::class , 'destroy'])->name('delete.document')->middleware('auth');

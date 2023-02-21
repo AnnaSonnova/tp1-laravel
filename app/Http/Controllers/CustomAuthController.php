@@ -42,13 +42,13 @@ class CustomAuthController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name'=>'required',
-            'email'=>'required|email|unique:users',
-            'password' => 'required|min:6|max:20',
+        // $request->validate([
+        //     'name'=>'required',
+        //     'email'=>'required|email|unique:users',
+        //     'password' => 'required|min:6|max:20',
         
-        // 'password_confirmation' => 'required|same:password',
-        ]);
+        // // 'password_confirmation' => 'required|same:password',
+        // ]);
         $user = new User;
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
