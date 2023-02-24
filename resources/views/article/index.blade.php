@@ -2,7 +2,7 @@
 @section('content') 
 
 <div class="container">
-        <h3 class="mt-4">Listes d'articles</h3>
+        <h3 class="mt-4">@lang('lang.liste-article')</h3>
         <div class="row">
             @forelse($article as $articles) 
             <div class="card col-5 p-0 m-3">
@@ -14,8 +14,8 @@
             @if(Auth::user()->id == $articles->user_id) 
                 <div class="d-flex justify-content-around">
                     
-                    <a href="/edit-article/{{ $articles->id }}" class="btn btn-success">Modifier</a>
-                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Supprimer</button>
+                    <a href="/edit-article/{{ $articles->id }}" class="btn btn-success">  @lang('lang.btn-modifier')</a>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">@lang('lang.btn-supprimer')</button>
                 </div>
 
                 <!-- Modal -->
@@ -27,14 +27,14 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                               Supprimer 
+                            @lang('lang.btn-supprimer')
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('lang.btn-annuler')  Annuler</button>
                                 <form action="{{ route('delete.article', $articles->id) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-primary">Supprimer</button>
+                                    <button type="submit" class="btn btn-primary">@lang('lang.btn-supprimer')</button>
                                 </form>
                             </div>
                         </div> 
@@ -45,7 +45,7 @@
                 </div>
             </div>
             @empty
-                <p class="text-warning">Aucun article disponible </p>
+                <p class="text-warning">@lang('lang.aucunArticle')  </p>
             @endforelse
             
         </div>

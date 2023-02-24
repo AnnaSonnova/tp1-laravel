@@ -15,7 +15,7 @@
     </div>
     @php $locale = session()->get('locale'); @endphp
     <!-- @php $privilege = session()->get('user_privilege'); @endphp -->
-    <nav class="navbar navbar-expand-lg bg-light">
+    <nav class="navbar navbar-expand-lg " style="background-color: orange; padding:5px; ">
       
       <div class="container-fluid">
         
@@ -23,17 +23,17 @@
             <span class="navbar-toggler-icon"></span>
           </button>
          
-          <div class="collapse navbar-collapse navbar-nav" id="navbarNavAltMarkup">
+          <div class="collapse navbar-collapse navbar-nav" id="navbarNavAltMarkup" >
 
             <h4 class="d-inline p-2  ">@lang('lang.text_hello')  @if(Auth::check()) {{Auth::user()->name}} @else Guest  @endif</h4>
             @guest
             
-            <a class="nav-link" href="{{route('user.create')}}">Registration</a>
+            <a class="nav-link" href="{{route('user.create')}}" style="color:black; ">@lang('lang.register')</a>
             <a class="nav-link" href="{{route('login')}}">@lang('lang.login')</a>
             @else
             <a class="nav-link" href="{{route('logout')}}">@lang('lang.logout')</a>
-            <a class="nav-link" href="{{ route('liste.article') }}">Article</a>
-            <a class="btn btn-primary m-lg-1"  href="{{ route('create.article') }}">ajouter-article</a>
+            <a class="nav-link" href="{{ route('liste.article') }}">@lang('lang.article')</a>
+            <a class="btn btn-primary m-lg-1"  href="{{ route('create.article') }}">@lang('lang.ajouter-article')</a>
             <a class="nav-link" href="{{ route('document.liste') }}">Document</a>
             @endguest 
           </div>

@@ -7,7 +7,7 @@
             <div class="col-md-6 pt-4">
                 <div class="card">
                     <h3 class="card-header text-center">
-                        Login
+                    @lang('lang.login')
                     </h3>
                     <div class="card-body">
                         @if(session('success'))
@@ -31,28 +31,18 @@
                            @csrf 
                            
                            <div class="form-group mb-3">
-                                <input type="email" placeholder="Email" class=
+                                <input type="email" placeholder="@lang('lang.email')" class=
                                 "form-control" name="email" value="{{old('email')}}">
-                                <!-- @if($errors->has('email'))
-                                    <div class="text-danger mt-2">
-                                    {{$errors->first('email')}}
-                                    </div>
-
-                            @endif -->
+                               
                            </div>
                            <div class="form-group mb-3">
-                                <input type="password" placeholder="Password" class=
+                                <input type="password" placeholder="@lang('lang.password')" class=
                                 "form-control" name="password">
-                                @if($errors->has('password'))
-                                    <div class="text-danger mt-2">
-                                    {{$errors->first('password')}}
-                                    </div>
-
-                            @endif
+                               
 
                            </div>
                            <div class="d-grid mx-auto">
-                                <input type="submit" placeholder="Sauvgarder" class=
+                                <input type="submit" placeholder="@lang('lang.submit')" class=
                                 "btn btn-warning btn-block">
                             
 

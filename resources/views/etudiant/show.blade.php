@@ -6,21 +6,23 @@
 <div class="container">
     <div class="row mt-5">
         <div class="col-12  ">
-            <p>Nom : <strong>{!! $etudiant->nom !!}</strong></p> 
-            <p>Prenom : <strong>  {!! $etudiant->prenom !!}</strong></p>
-            <p>Date de naissance : <strong> {!! $etudiant->dateDeNaissance !!}</strong></p>
-            <p>Adresse : <strong> {!! $etudiant->adresse !!}</strong></p>
-            <p>Phone : <strong> {!! $etudiant->phone !!}</strong></p> 
-            <p>Email : <strong> {!! $etudiant->email !!}</strong></p>
-            <p>Ville :<strong> {!! $etudiant->EtudiantAVille->nomVille !!}</strong></p> 
+            <p>@lang('lang.name') : <strong>{!! $etudiant->nom !!}</strong></p> 
+           
+            <p>@lang('lang.dateDeNaissance') : <strong> {!! $etudiant->dateDeNaissance !!}</strong></p>
+            <p>@lang('lang.adresse') : <strong> {!! $etudiant->adresse !!}</strong></p>
+            <p>@lang('lang.phone') : <strong> {!! $etudiant->phone !!}</strong></p> 
+            <p>@lang('lang.email') : <strong> {!! $etudiant->email !!}</strong></p>
+            <p>@lang('lang.city') :<strong> {!! $etudiant->ville->nomVille !!}</strong></p>
+           
             <div class="d-flex justify-content-around">
-                <a href="{{ route('index') }}" class="btn btn-warning  ">Retourner</a>
-                <a href="{{ route('edit', $etudiant->id)}}" class="btn btn-success">Modifier</a>
+                <a href="{{ route('index') }}" class="btn btn-warning  ">@lang('lang.retour')</a>
+                @if(Auth::user()->id == $etudiant->user_id)  
+                <a href="{{ route('edit', $etudiant->id)}}" class="btn btn-success"> @lang('lang.edit')</a>
                <!-- Button trigger modal -->
                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">
-                 Supprimer
+                  @lang('lang.delete')
                 </button>
-                
+                @endif
             </div>
         </div>
         

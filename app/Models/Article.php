@@ -21,7 +21,7 @@ class Article extends Model
 
         $lang = session()->get('localeDB');       
         return Article::select('id', 'titre','titre_fr', 'user_id',
-        DB::raw("(case when contenu$lang is null then contenu else contenu$lang end) as contenu")
+        DB::raw("(case when contenu$lang is null then contenu else contenu$lang end) as contenu"),DB::raw("(case when titre$lang is null then contenu else titre$lang end) as titre")
         )
         ->orderBy('titre', $order)
         ->get();

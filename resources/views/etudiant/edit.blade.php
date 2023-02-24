@@ -18,12 +18,7 @@
                         <input type="text" class="form-control" name="nom" value="{!! $etudiant->nom !!}">
                         </div>
                 </div>
-                <div class="row mb-3 mt-2">
-                    <label for="prenom" class="col-sm-2 col-form-label">Prenom </label>
-                    <div class="col-sm-6">
-                        <input type="text" class="form-control" name="prenom" value="{!! $etudiant->prenom !!}">
-                        </div>
-                </div>
+                
                 <div class="row mb-3 mt-2">
                     <label for="email" class="col-sm-2 col-form-label" >Email  </label>
                     <div class="col-sm-6">

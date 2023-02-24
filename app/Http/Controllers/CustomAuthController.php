@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Etudiant;
+use App\Models\Ville;
 
 // use DB;
 use Illuminate\Support\Facades\DB;
@@ -30,7 +32,9 @@ class CustomAuthController extends Controller
      */
     public function create()
     {
-        return view('auth.create');
+        $villes = Ville::all();
+        
+        return view('auth.create',  ['villes' => $villes]);
     }
 
     /**
@@ -42,19 +46,39 @@ class CustomAuthController extends Controller
      */
     public function store(Request $request)
     {
-        // $request->validate([
-        //     'name'=>'required',
-        //     'email'=>'required|email|unique:users',
-        //     'password' => 'required|min:6|max:20',
-        
-        // // 'password_confirmation' => 'required|same:password',
-        // ]);
+        $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users',
+            'password' => 'required|min:6|max:20',
+            'nom' => 'required',
+            'adresse' => 'required',
+            'phone' => 'required',
+            'dateDeNaissance' => 'required',
+            'ville_id' => 'required',
+   
+        // 'password_confirmation' => 'required|same:password',
+        ]);
         $user = new User;
         $user->fill($request->all());
         $user->password = Hash::make($request->password);
         $user->save();
+       
+        $newEtudiant = Etudiant::create([
 
+            'nom' => $request->nom,
+            
+            'adresse' => $request->adresse,
+            'phone' => $request->phone,
+            
+            'ville_id' => $request->ville_id,
+            'dateDeNaissance' => $request->dateDeNaissance,
+            'users_id' => $user->id,   
+        ]); 
+        //return redirect(route('show', $newEtudiant->id));
         return redirect(route('login'))->withSuccess('User enregistré');
+
+
+        
     }
 
     /**

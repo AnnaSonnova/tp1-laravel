@@ -18,10 +18,10 @@
             @endif
             @if(session()->has('message'))
                 <div class="alert alert-success">
-                    <h1>document-ajouter</h1>
+                    <h1>@lang('lang.document-ajouter')</h1>
                 </div>
             @endif
-            <h1 class="py-3">document-ajouter</h1>
+            <h1 class="py-3">@lang('lang.document-ajouter')</h1>
             <div class="row mb-3 mt-2">
             <label for="titre" class="col-sm-1 col-form-label">Titre anglais</label>
             <div class="col-sm-10">
@@ -37,8 +37,8 @@
            
             <input type="hidden" class="form-control" name="user_id" value="{{Auth::user()->id}}">
             <div class="col-sm-5">
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <a class="btn btn-primary m-lg-1"  href="{{ route('document.liste') }}">Retour</a>
+                <button type="submit" class="btn btn-primary">@lang('lang.submit')</button>
+                <a class="btn btn-primary m-lg-1"  href="{{ route('document.liste') }}"> @lang('lang.retour')</a>
             </div>
     </form>
 </div>

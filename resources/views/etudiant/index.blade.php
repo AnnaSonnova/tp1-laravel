@@ -7,12 +7,14 @@
             <hr>
             <div class="card">
                 <div class="card-header" style="color:chocolate; ">
-                    <h1>Liste des etudiants du Collège Maisonneuve</h1>
+                    <h1>  @lang('lang.etudiant-college')</h1>
                 </div>
                 <div class="card-body ">
                     @forelse($etudiants as $etudiant) 
                         <ul> 
-                            <li><a href="{{ route('show', $etudiant->id) }}" style=" color:black; "> {{ ucfirst($etudiant->nom) }}, {{ ucfirst($etudiant->prenom) }}</a></li> 
+                       
+                            <li><a href="{{ route('show', $etudiant->id) }}" style=" color:black; ">    {{ $etudiant->name }}, {{ ucfirst($etudiant->adresse) }}, {{ucfirst($etudiant->dateDeNaissance)}}  , {{ $etudiant->ville }}</a></li>
+                           
                         </ul>
                     @empty
                         <p class="text-warning">Aucun etudiant disponible </p>

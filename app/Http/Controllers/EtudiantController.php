@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Etudiant;
 use App\Models\Ville;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class EtudiantController extends Controller
 {
@@ -17,7 +19,14 @@ class EtudiantController extends Controller
     public function index()
     {
         if(Auth::check()){
-            $etudiants = Etudiant::select()->paginate(10);
+            $etudiants = DB::table('etudiants')
+                ->join('villes', 'etudiants.ville_id', '=', 'villes.id')
+                ->join('users', 'etudiants.users_id', '=', 'users.id')
+                ->select('etudiants.*', 'villes.nomVille as ville', 'users.name as name')
+                ->paginate(10);
+
+            // $etudiants = Etudiant::select()->paginate(10);
+           
             return view('etudiant.index', ['etudiants' => $etudiants]);
             }
             return redirect(route('login'))->withErrors('Vous devez vous connecté pour acceder a la liste d\'etudiants');
@@ -52,10 +61,9 @@ class EtudiantController extends Controller
     //     $request->validate([
           
     //         'nom' => 'required',
-    //         'prenom' => 'required',
     //         'adresse' => 'required',
     //         'phone' => 'required|numeric|digits:10',
-    //         //'dateDeNaissance' => 'required|date_format:m/d/Y|before:today',
+    //         'dateDeNaissance' => 'required|date_format:m/d/Y|before:today',
     //         'ville_id' => 'required',
     //         'email' => 'required|email|unique:etudiants',
             
@@ -65,7 +73,7 @@ class EtudiantController extends Controller
         $newEtudiant = Etudiant::create([
 
             'nom' => $request->nom,
-            'prenom' => $request->prenom,
+            
             'adresse' => $request->adresse,
             'phone' => $request->phone,
             'email' =>  $request->email,
@@ -85,7 +93,7 @@ class EtudiantController extends Controller
      */
     public function show(Etudiant $etudiant)
     {
-        //
+       
         return view('etudiant.show', ['etudiant' => $etudiant]);
     }
 
@@ -100,7 +108,19 @@ class EtudiantController extends Controller
         
         $villes = Ville::all();
         
-        return view('etudiant.edit', ['etudiant' => $etudiant, 'villes' => $villes]);
+         return view('etudiant.edit', ['etudiant' => $etudiant, 'villes' => $villes]);
+
+
+        // $user_id = Auth::user()->id;
+        // if ($etudiant['user_id'] === $user_id) {
+
+        //     return view('etudiant.edit', ['etudiant' => $etudiant, 'villes' => $villes]);
+
+        // }else {
+
+           
+        //     return view('etudiant.index', ['etudiant' => $etudiant]);
+        // }
     }
 
     /**
@@ -116,7 +136,7 @@ class EtudiantController extends Controller
         $etudiant->update([
             
             'nom' => $request->nom,
-            'prenom' => $request->prenom,
+           
             'adresse' => $request->adresse,
             'phone' => $request->phone,
             'email' =>  $request->email,
