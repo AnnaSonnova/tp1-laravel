@@ -63,7 +63,13 @@
       </td>
       
       <td>
-        <a class="btn btn-outline-success" href="/download-document/{{ $document->document }}">@lang('lang.download')</a>
+        
+        
+        <a class="btn btn-outline-success" href="{{ route('file.download', ['filename' => $document->titre]) }}" download>@lang('lang.download')</a>
+
+
+
+
        @if(Auth::user()->id == $document->user_id)
         <a class="btn btn-outline-primary" href="/edit-document/{{ $document->id }}">@lang('lang.edit') </a>
         <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">@lang('lang.delete')</button>

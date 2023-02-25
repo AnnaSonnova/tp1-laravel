@@ -71,4 +71,6 @@ Route::get('/edit-document/{document}', [DocumentController::class , 'edit'])->n
 Route::put('/edit-document/{id}', [DocumentController::class , 'update'])->name('update.document')->middleware('auth');
 Route::delete('/delete-document/{document}', [DocumentController::class , 'destroy'])->name('delete.document')->middleware('auth');
 
-Route::get('/download-document/{document}', [DocumentController::class , 'download'])->name('download.document')->middleware('auth');
+
+
+Route::get('/download/{filename}', [DocumentController::class , 'downloadFile'])->name('file.download');
