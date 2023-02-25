@@ -7,7 +7,12 @@
             @forelse($article as $articles) 
             <div class="card col-5 p-0 m-3">
                 <div class="card-header py-2 bg-primary">
+               
+                @if(session()->has('locale') && session()->get('locale') == 'fr') 
+                    <h1>{{ ucfirst($articles->titre_fr) }} </h1>
+                    @else
                     <h1>{{ ucfirst($articles->titre) }} </h1>
+                    @endif
                 </div>
                 <div class="card-body py-5">
                     <p class="card-text">{{ ucfirst($articles->contenu) }}</p>
@@ -47,8 +52,12 @@
             @empty
                 <p class="text-warning">@lang('lang.aucunArticle')  </p>
             @endforelse
-            
+            <div style="background-color: orange;  ">
+        
+            <p >{{ $article}}</p>
         </div>
+        </div>
+        
     </div>
 
 

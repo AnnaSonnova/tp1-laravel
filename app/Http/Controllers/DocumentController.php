@@ -9,18 +9,23 @@ class DocumentController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
+     * afficher tous
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         //
+        
+
+
         $documents = Document::select()->paginate(5);
         return view('document.liste' , ['documents' => $documents]);
     }
 
     /**
      * Show the form for creating a new resource.
+     * afficher le formulaire pour créer un doc
      *
      * @return \Illuminate\Http\Response
      */
@@ -32,6 +37,7 @@ class DocumentController extends Controller
 
     /**
      * Store a newly created resource in storage.
+     * saisir un nouveau doc
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -70,6 +76,7 @@ class DocumentController extends Controller
 
     /**
      * Display the specified resource.
+     * afficher un doc
      *
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
@@ -81,6 +88,7 @@ class DocumentController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * afficher le formulaire pour modifier
      *
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
@@ -93,6 +101,7 @@ class DocumentController extends Controller
 
     /**
      * Update the specified resource in storage.
+     * enregistrer le document modifié
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Document  $document
@@ -121,6 +130,7 @@ class DocumentController extends Controller
 
     /**
      * Remove the specified resource from storage.
+     * supprimer un document
      *
      * @param  \App\Models\Document  $document
      * @return \Illuminate\Http\Response
@@ -132,8 +142,14 @@ class DocumentController extends Controller
         return redirect(route('document.liste'));
     }
 
+
+    /**
+     * 
+     */
     public function download(Request $request,$document) 
     {
+        dd($document);
         return response()->download(public_path('assets/document/'.$document));
     }
 }
+// timestamp

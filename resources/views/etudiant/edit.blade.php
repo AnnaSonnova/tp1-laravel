@@ -19,12 +19,7 @@
                         </div>
                 </div>
                 
-                <div class="row mb-3 mt-2">
-                    <label for="email" class="col-sm-2 col-form-label" >Email  </label>
-                    <div class="col-sm-6">
-                        <input type="email" class="form-control" name="email" value="{!! $etudiant->email !!}">
-                        </div>
-                </div>
+                
                 <div class="row mb-3 mt-2">
                     <label for="adresse" class="col-sm-2 col-form-label">Adresse </label>
                     <div class="col-sm-6">

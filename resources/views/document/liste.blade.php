@@ -10,6 +10,7 @@
     <tr>
       <th>@lang('lang.titre-fichier')</th>
       <th>@lang('lang.nom-fichier')</th>
+      <th>@lang('lang.name-user')</th>
       <th>Date</th>
       <th>Actions</th>
     </tr>
@@ -20,7 +21,12 @@
       <td>
         <div class="d-flex align-items-center">
             <div class="ms-3">
-            <p class="text-muted mb-0">{{ ucfirst($document->titre) }}</p>
+         
+            @if(session()->has('locale') && session()->get('locale') == 'fr') 
+            <p class="text-muted mb-0">{{ ucfirst($document->titre_fr) }}</p>
+                    @else
+                    <p class="text-muted mb-0">{{ ucfirst($document->titre) }}</p>
+                    @endif
           </div>
         </div>
       </td>
@@ -32,6 +38,16 @@
             <div class="ms-3">
             
             <p class="text-muted mb-0">{{ ucfirst($document->document) }}</p>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div class="d-flex align-items-center">
+         
+          
+            <div class="ms-3">
+            
+            <p class="text-muted mb-0">{{ $document->user->name }}</p>
           </div>
         </div>
       </td>

@@ -23,9 +23,9 @@ class EtudiantController extends Controller
                 ->join('villes', 'etudiants.ville_id', '=', 'villes.id')
                 ->join('users', 'etudiants.users_id', '=', 'users.id')
                 ->select('etudiants.*', 'villes.nomVille as ville', 'users.name as name')
-                ->paginate(10);
+                ->paginate(5);
 
-            // $etudiants = Etudiant::select()->paginate(10);
+            
            
             return view('etudiant.index', ['etudiants' => $etudiants]);
             }
@@ -56,27 +56,19 @@ class EtudiantController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        //exit($request->dateDeNaissance);
+        
     //     $request->validate([
-          
     //         'nom' => 'required',
     //         'adresse' => 'required',
     //         'phone' => 'required|numeric|digits:10',
     //         'dateDeNaissance' => 'required|date_format:m/d/Y|before:today',
     //         'ville_id' => 'required',
-    //         'email' => 'required|email|unique:etudiants',
-            
-            
+    //                  
     // ]);
-
         $newEtudiant = Etudiant::create([
-
             'nom' => $request->nom,
-            
             'adresse' => $request->adresse,
             'phone' => $request->phone,
-            'email' =>  $request->email,
             'ville_id' => $request->ville_id,
             'dateDeNaissance' => $request->dateDeNaissance   
         ]); 
@@ -111,16 +103,7 @@ class EtudiantController extends Controller
          return view('etudiant.edit', ['etudiant' => $etudiant, 'villes' => $villes]);
 
 
-        // $user_id = Auth::user()->id;
-        // if ($etudiant['user_id'] === $user_id) {
-
-        //     return view('etudiant.edit', ['etudiant' => $etudiant, 'villes' => $villes]);
-
-        // }else {
-
-           
-        //     return view('etudiant.index', ['etudiant' => $etudiant]);
-        // }
+       
     }
 
     /**
@@ -132,6 +115,11 @@ class EtudiantController extends Controller
      */
     public function update(Request $request, Etudiant $etudiant)
     {
+        // $etudiants = DB::table('etudiants')
+        //         ->join('villes', 'etudiants.ville_id', '=', 'villes.id')
+        //         ->join('users', 'etudiants.users_id', '=', 'users.id')
+        //         ->select('etudiants.*', 'villes.nomVille as ville', 'users.name as name')
+        //         ->paginate(10);
         //
         $etudiant->update([
             
@@ -139,7 +127,7 @@ class EtudiantController extends Controller
            
             'adresse' => $request->adresse,
             'phone' => $request->phone,
-            'email' =>  $request->email,
+           
             'ville_id' => $request->ville_id,
             'dateDeNaissance' => $request->dateDeNaissance  
         ]);
@@ -160,14 +148,7 @@ class EtudiantController extends Controller
 
     }
 
-    // public function page()
-    //     $query = Etudiant::select()
-    //         ->paginete(10);
-    //         return view('blog.page', ['etudiants'=>$etudiants]);
-        
-    // }
+   
 }
 
-// select*from blog_post Limit  10
-// select*from blog_post Limit 10 10
-// select*from blog_post Limit 20 10
+

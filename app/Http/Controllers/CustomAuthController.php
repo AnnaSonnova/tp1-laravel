@@ -66,15 +66,13 @@ class CustomAuthController extends Controller
         $newEtudiant = Etudiant::create([
 
             'nom' => $request->nom,
-            
             'adresse' => $request->adresse,
             'phone' => $request->phone,
-            
             'ville_id' => $request->ville_id,
             'dateDeNaissance' => $request->dateDeNaissance,
             'users_id' => $user->id,   
         ]); 
-        //return redirect(route('show', $newEtudiant->id));
+        
         return redirect(route('login'))->withSuccess('User enregistré');
 
 

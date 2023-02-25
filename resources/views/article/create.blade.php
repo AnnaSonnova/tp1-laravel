@@ -24,7 +24,7 @@
                 
                 <label for="titre_fr" class="col-sm-1 col-form-label">@lang('lang.title') </label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="titre_fr" value="">
+                    <input type="text" class="form-control" name="titre_fr" value="" min_length="2">
                 </div>
 
             </div>
@@ -42,7 +42,7 @@
                 
                 <label for="titre" class="col-sm-1 col-form-label">@lang('lang.title')</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="titre" value="">
+                    <input type="text" class="form-control" name="titre" value="" min_length="2">
                 </div>
 
             </div>

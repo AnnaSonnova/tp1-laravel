@@ -34,6 +34,7 @@ return [
  'document-ajouter' => 'Document add',
  'titre-fichier' => 'Title',
  'nom-fichier' => 'File name',
+ 'name-user' => 'Users name',
  'download' => 'Download',
  'edit' => 'Edit',
  'delete' => 'Delete',
@@ -43,6 +44,8 @@ return [
  'liste-document' => 'File list',
  'empty-document' => 'No documents available',
  'add-document' => 'Add document',
+ 'text-welcome' => 'This site is a multi-language project with the Laravel framework.  
+ It allows you to consult the list of students of Maisonneuve College, to add articles, so students can share documents in pdf, zip and doc format.'
 
 
 ];

@@ -57,15 +57,18 @@ Route::get('/edit-article/{article}', [ArticleController::class , 'edit'])->name
 Route::put('/edit-article/{article}', [ArticleController::class , 'update'])->name('update.article');
 Route::post('/store-article', [ArticleController::class , 'store'])->name('store.article');
 
+// Route::get('page', [ArticleController::class, 'page']);
+
 //pdf
-Route::get('/article-pdf/{article}', [BlogPostController::class, 'articlePdf'])->name('article.pdf')->middleware('auth');
+Route::get('/article-pdf/{article}', [ArticleController::class, 'articlePdf'])->name('article.pdf')->middleware('auth');
 // Route::get('/doc-pdf/{document}', [BlogPostController::class, 'docPdf'])->name('doc.pdf')->middleware('auth');
 
 // document 
 Route::get('/liste-document', [DocumentController::class, 'index'])->name('document.liste')->middleware('auth');
 Route::get('/create-document', [DocumentController::class , 'create'])->name('create.document')->middleware('auth');
 Route::post('/store-document', [DocumentController::class , 'store'])->name('store.document')->middleware('auth');
-Route::get('/download-document/{document}', [DocumentController::class , 'download'])->name('download.document')->middleware('auth');
 Route::get('/edit-document/{document}', [DocumentController::class , 'edit'])->name('edit.document')->middleware('auth');
 Route::put('/edit-document/{id}', [DocumentController::class , 'update'])->name('update.document')->middleware('auth');
 Route::delete('/delete-document/{document}', [DocumentController::class , 'destroy'])->name('delete.document')->middleware('auth');
+
+Route::get('/download-document/{document}', [DocumentController::class , 'download'])->name('download.document')->middleware('auth');

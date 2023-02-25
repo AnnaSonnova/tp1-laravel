@@ -19,7 +19,10 @@ class Article extends Model
     
     static public function selectArticles($order = 'ASC'){
 
-        $lang = session()->get('localeDB');       
+        $lang = session()->get('localeDB'); 
+         if(session()->has('locale') && session()->get('locale') == 'fr'):
+             $lang = '_fr';
+             endif;      
         return Article::select('id', 'titre','titre_fr', 'user_id',
         DB::raw("(case when contenu$lang is null then contenu else contenu$lang end) as contenu"),DB::raw("(case when titre$lang is null then contenu else titre$lang end) as titre")
         )

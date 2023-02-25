@@ -11,12 +11,13 @@
             <p>@lang('lang.dateDeNaissance') : <strong> {!! $etudiant->dateDeNaissance !!}</strong></p>
             <p>@lang('lang.adresse') : <strong> {!! $etudiant->adresse !!}</strong></p>
             <p>@lang('lang.phone') : <strong> {!! $etudiant->phone !!}</strong></p> 
-            <p>@lang('lang.email') : <strong> {!! $etudiant->email !!}</strong></p>
+           
             <p>@lang('lang.city') :<strong> {!! $etudiant->ville->nomVille !!}</strong></p>
            
             <div class="d-flex justify-content-around">
                 <a href="{{ route('index') }}" class="btn btn-warning  ">@lang('lang.retour')</a>
-                @if(Auth::user()->id == $etudiant->user_id)  
+                
+                @if(Auth::user()->id == $etudiant->users_id)  
                 <a href="{{ route('edit', $etudiant->id)}}" class="btn btn-success"> @lang('lang.edit')</a>
                <!-- Button trigger modal -->
                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">

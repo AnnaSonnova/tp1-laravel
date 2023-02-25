@@ -34,6 +34,7 @@ return [
  'document-ajouter' => 'Ajouter document',
  'titre-fichier' => 'Titre',
  'nom-fichier' => 'Nom du fichier',
+ 'name-user' => 'Nom d\'etudiant',
  'download' => 'Telecharger',
  'edit' => 'Modifier',
  'delete' => 'Supprimer',
@@ -43,6 +44,8 @@ return [
  'liste-document' => 'Liste de document',
  'empty-document' => 'Aucun document disponible',
  'add-document' => 'Ajouter un document',
+ 'text-welcome' => 'Ce site est un projet multilangue avec le cadriciel Laravel.
+   Il vous permet de  consulter la liste des étudiants du collège Maisonneuve, d’ajouter les articles, aussi les étudiants peuvent partager des documents au format pdf, zip et doc.'
 
 
 ];

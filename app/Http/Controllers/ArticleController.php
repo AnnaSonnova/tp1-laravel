@@ -6,6 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
@@ -16,7 +17,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articles = Article::selectArticles();
+       
+        $articles = Article::select()->paginate(4);
         return view('article.index', ['article' => $articles]);
 //  if(Auth::check()){
 //  $posts = BlogPost::all();
@@ -50,9 +52,9 @@ class ArticleController extends Controller
         //
         $request->validate([
           
-            'titre' => 'required|unique:articles',
+            'titre' => 'required|unique:articles|min:2',
             'contenu' => 'required',
-            'titre_fr' => 'required|unique:articles',
+            'titre_fr' => 'required|unique:articles|min:2',
             'contenu_fr' => 'required',
             
 
@@ -109,17 +111,17 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(Request $request, $id)
     {
         //
 
-        // $request->validate([
+        $request->validate([
           
-        //     'titre' => 'required|unique:articles',
-        //     'titre_fr' => 'required|unique:articles',
+            'titre' => 'required|unique:articles|min:2',
+            'titre_fr' => 'required|min:2|unique:articles',
 
-        // ]);
-        // $article = Article::find($id);
+        ]);
+        $article = Article::find($id);
         $article->update([
 
             'titre' => $request->titre,
@@ -144,4 +146,12 @@ class ArticleController extends Controller
         $article->delete();
         return redirect(route('liste.article'));
     }
+
+    // public function page(){
+    //     // $articles = Article::select()
+    //     //         ->paginate(5);
+    //             $articles = DB::table('articles')->paginate(10);
+
+    //             return view('article.index', ['articles' => $articles]);
+    // }
 }

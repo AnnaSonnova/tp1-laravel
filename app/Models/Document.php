@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
 
 class Document extends Model
 {
@@ -25,7 +26,11 @@ class Document extends Model
         ->get();
         return $query;
         }
-       
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
        
 }
