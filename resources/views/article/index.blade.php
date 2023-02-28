@@ -18,7 +18,7 @@
                     <p class="card-text">{{ ucfirst($articles->contenu) }}</p>
             @if(Auth::user()->id == $articles->user_id) 
                 <div class="d-flex justify-content-around">
-                    
+                
                     <a href="/edit-article/{{ $articles->id }}" class="btn btn-success">  @lang('lang.btn-modifier')</a>
                     <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">@lang('lang.btn-supprimer')</button>
                 </div>

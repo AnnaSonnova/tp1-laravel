@@ -57,14 +57,7 @@ class EtudiantController extends Controller
     public function store(Request $request)
     {
         
-    //     $request->validate([
-    //         'nom' => 'required',
-    //         'adresse' => 'required',
-    //         'phone' => 'required|numeric|digits:10',
-    //         'dateDeNaissance' => 'required|date_format:m/d/Y|before:today',
-    //         'ville_id' => 'required',
-    //                  
-    // ]);
+    
         $newEtudiant = Etudiant::create([
             'nom' => $request->nom,
             'adresse' => $request->adresse,

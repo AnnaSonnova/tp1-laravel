@@ -145,20 +145,12 @@ class CustomAuthController extends Controller
         $user = Auth::getProvider()->retrieveByCredentials($credentials);
         Auth::login($user, $request->get('remember'));
 
-        return redirect()->intended('dashboard')->withSuccess('Signed in');
+        // return redirect()->intended('/')->withSuccess('Signed in');
+        return redirect(route('liste.article'));
        
     }
 
-    public function dashboard(){
-
-        $name = 'Guest';
-        if(Auth::check()){
-        $name = Auth::user()->name;
-        return view('welcome', ['name' =>$name]);
-        }
-      return redirect(route('login'))->withErrors('Vous n/est pas connecter');
-
-    }
+    
 
     public function logout(){
         Session::flush();

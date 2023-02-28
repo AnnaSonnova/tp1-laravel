@@ -16,9 +16,6 @@ class DocumentController extends Controller
      */
     public function index()
     {
-        //
-        
-
 
         $documents = Document::select()->paginate(5);
         return view('document.liste' , ['documents' => $documents]);
@@ -43,39 +40,6 @@ class DocumentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-//     public function store(Request $request)
-//     {
-//         //
-//         $request->validate([
-
-//             'document' => 'required|mimes:jpg,pdf,zip|max:2048',
-//             'titre' => 'required|unique:documents',
-//             'titre_fr' => 'required|unique:documents',
-
-//         ]);
-//         $document = $request->document;
-// //dd($document);
-
-//         $Documentname=$request->titre.'.'.$document->getClientOriginalExtension();
-//         $request->document->storeAs('public/uploads',$Documentname);
-
-//         //$request->document = $Documentname;
-        
-       
-//         $newDocument = Document::create([
-
-//             'titre' => $request->titre,
-//             'titre_fr' => $request->titre_fr,
-//             'document' => $request->document,
-//             'user_id' => $request->user_id,
-             
-//         ]); 
-
-        
-//         return redirect(route('create.document'))->with('message', 'IT WORKS!');
-//     }
-
-
 public function store(Request $request)
 {
     $request->validate([
@@ -181,23 +145,14 @@ public function store(Request $request)
     //      return response()->download(public_path($path . $request));
     //  }
 
-//     public function downloadFile($filename)
-// { 
-    
-//     $path = storage_path('app/public/uploads/' . $filename);
-    
-//     echo  $path ; exit;
 
-//     //Log::info('File path: ' . $path);
-//     return Response::download($path, $filename);
-// }
-public function downloadFile($filename)
-{ 
-    $path = storage_path('app/public/uploads/' . $filename);
-    $extension = pathinfo($path, PATHINFO_EXTENSION); // получить расширение файла из полного пути
-    //echo  $extension ; exit;
-    return response()->download($path, $filename, [], 'inline')->setContentDisposition('inline; filename="'.$filename.'.'.$extension.'"');
-}
+    public function downloadFile($filename)
+    { 
+        $path = storage_path('app/public/uploads/' . $filename);
+        $extension = pathinfo($path, PATHINFO_EXTENSION); //pour resevoir l'extencion de la route complete 
+        
+        return response()->download($path, $filename, [], 'inline')->setContentDisposition('inline; filename="'.$filename.'.'.$extension.'"');
+    }
 
 
 }

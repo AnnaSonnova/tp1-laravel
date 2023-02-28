@@ -24,6 +24,7 @@ Route::get('/', function () {
 })->name('about');
 
 
+
 //route etudiant
  
 Route::get('index', [EtudiantController::class , 'index'])->name('index')->middleware('auth');
@@ -37,24 +38,24 @@ Route::delete('edit/{etudiant}', [EtudiantController::class, 'destroy'])->middle
 
 
 //route auth user
-Route::get('/login', [CustomAuthController::class, 'index'])->name('login');
-Route::post('/login', [CustomAuthController::class, 'authentication'])->name('user.auth');
-Route::get('/registration', [CustomAuthController::class, 'create'])->name('user.create');
-Route::post('/registration', [CustomAuthController::class, 'store'])->name('user.store');
-Route::get('/logout', [CustomAuthController::class, 'logout'])->name('logout');
+Route::get('login', [CustomAuthController::class, 'index'])->name('login');
+Route::post('login', [CustomAuthController::class, 'authentication'])->name('user.auth');
+Route::get('registration', [CustomAuthController::class, 'create'])->name('user.create');
+Route::post('registration', [CustomAuthController::class, 'store'])->name('user.store');
+Route::get('logout', [CustomAuthController::class, 'logout'])->name('logout');
 
-Route::get('/dashboard', [CustomAuthController::class, 'dashboard'])->name(
+Route::get('dashboard', [CustomAuthController::class, 'dashboard'])->name(
     'dashboard');
 
 //langue
-Route::get('/lang/{locale}', [LocalizationController::class, 'index'])->name('lang');
+Route::get('lang/{locale}', [LocalizationController::class, 'index'])->name('lang');
 
 // article 
 Route::get('/index-article', [ArticleController::class, 'index'])->name('liste.article')->middleware('auth');
 Route::get('/create-article', [ArticleController::class , 'create'])->name('create.article')->middleware('auth');
 Route::delete('/delete.article/{article}', [ArticleController::class , 'destroy'])->name('delete.article');
-Route::get('/edit-article/{article}', [ArticleController::class , 'edit'])->name('edit.article')->middleware('auth');
-Route::put('/edit-article/{article}', [ArticleController::class , 'update'])->name('update.article');
+Route::get('edit-article/{article}', [ArticleController::class , 'edit'])->name('edit.article')->middleware('auth');
+Route::put('edit-article/{article}', [ArticleController::class , 'update'])->name('update.article');
 Route::post('/store-article', [ArticleController::class , 'store'])->name('store.article');
 
 // Route::get('page', [ArticleController::class, 'page']);

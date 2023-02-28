@@ -6,7 +6,7 @@ use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App;
-use Illuminate\Support\Facades\DB;
+
 
 class ArticleController extends Controller
 {
@@ -20,13 +20,7 @@ class ArticleController extends Controller
        
         $articles = Article::select()->paginate(4);
         return view('article.index', ['article' => $articles]);
-//  if(Auth::check()){
-//  $posts = BlogPost::all();
-//  return view('blog.index', ['posts' => $posts]);
-//  }
-//  return redirect(route('login'))->withErrors('Vous n\'
-// êtes pas autorisé à accéder');
- 
+
 
     }
 
@@ -147,11 +141,5 @@ class ArticleController extends Controller
         return redirect(route('liste.article'));
     }
 
-    // public function page(){
-    //     // $articles = Article::select()
-    //     //         ->paginate(5);
-    //             $articles = DB::table('articles')->paginate(10);
-
-    //             return view('article.index', ['articles' => $articles]);
-    // }
+    
 }
